@@ -36,6 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'CHMG_AUTO_ADD_TO_CART_VERSION', '1.0.0' );
+define( 'AATC_TEXT_DOMAIN', 'chmg-auto-add-to-cart' );
 
 /**
  * The code that runs during plugin activation.

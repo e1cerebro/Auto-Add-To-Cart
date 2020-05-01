@@ -59,7 +59,7 @@ class Chmg_Auto_Add_To_Cart_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles($hook_suffix) {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -74,6 +74,13 @@ class Chmg_Auto_Add_To_Cart_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/chmg-auto-add-to-cart-admin.css', array(), $this->version, 'all' );
+ 
+		if(strpos($hook_suffix, 'product_page_auto-add-to-cart-page') !== false) {
+		 
+			wp_enqueue_style( $this->plugin_name."-chosen-css", "https://harvesthq.github.io/chosen/chosen.css", array(), '', 'all' );
+			wp_enqueue_style( $this->plugin_name."-data-table-css", "https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css", array(), '', 'all' );
+
+		}
 
 	}
 
@@ -82,7 +89,7 @@ class Chmg_Auto_Add_To_Cart_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts($hook_suffix) {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -97,7 +104,34 @@ class Chmg_Auto_Add_To_Cart_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/chmg-auto-add-to-cart-admin.js', array( 'jquery' ), $this->version, false );
+		
+		
+		if(strpos($hook_suffix, 'product_page_auto-add-to-cart-page') !== false) {
+ 			wp_enqueue_script( $this->plugin_name."-chosen-js","//harvesthq.github.io/chosen/chosen.jquery.js", '', true );
+ 			wp_enqueue_script( $this->plugin_name."-data-table-js","https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js", '', time(), true );
+		} 
 
 	}
+
+
+	public function aatc_admin_menu(){
+		
+		add_submenu_page( 
+			'edit.php?post_type=product', 
+			__('Auto Add to Cart', AATC_TEXT_DOMAIN), 
+			__('Auto Add to Cart', AATC_TEXT_DOMAIN), 
+			'manage_options', 
+			'auto-add-to-cart-page', 
+			[ $this, 'chmg_auto_add_to_cart_cb'] );
+
+	}
+
+
+	public function chmg_auto_add_to_cart_cb(){
+		include_once( 'partials/chmg-auto-add-to-cart-admin-display.php' );
+	}
+
+
+
 
 }

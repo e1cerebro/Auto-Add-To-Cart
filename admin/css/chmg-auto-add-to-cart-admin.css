@@ -2,3 +2,28 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+section.aatc-main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+div.aatc-left-bar {
+  background-color: #fff;
+  max-height: 100vh;
+  width: 30%;
+  padding: 20px;
+}
+
+div.aatc-left-bar h2 {
+  border-bottom: 2px solid #000;
+}
+
+div.aatc-right-bar {
+  background-color: rgb(180, 180, 180);
+  width: 65%;
+  margin: 0 10px;
+  padding: 20px;
+}
