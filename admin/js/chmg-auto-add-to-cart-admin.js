@@ -1,4 +1,5 @@
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
+  jQuery('.chosen-select').chosen();
   jQuery('#aatc_list').DataTable({
     pageLength: 25,
     lengthMenu: [
@@ -9,4 +10,18 @@ jQuery(document).ready(function () {
       searchPlaceholder: 'search result database...',
     },
   });
+
+  $('.categories').fadeOut();
+
+  $('#choice_type').on('change', function () {
+    if (this.value === 'products') {
+      $('.categories').slideUp();
+      $('.products').slideDown();
+    } else {
+      $('.categories').slideDown();
+      $('.products').slideUp();
+    }
+  });
+
+  jQuery('').on('click', function () {});
 });

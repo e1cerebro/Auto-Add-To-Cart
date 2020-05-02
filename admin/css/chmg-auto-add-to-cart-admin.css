@@ -11,14 +11,27 @@ section.aatc-main {
 }
 
 div.aatc-left-bar {
-  background-color: #fff;
+  background-color: #000;
   max-height: 100vh;
   width: 30%;
   padding: 20px;
+  color: #fff;
+  border: 5px solid #c98100;
 }
 
 div.aatc-left-bar h2 {
-  border-bottom: 2px solid #000;
+  text-transform: uppercase;
+  padding-bottom: 0px;
+  margin: 0;
+  color: #fff;
+  font-size: 25px;
+  padding-bottom: 5px;
+}
+
+.section-title {
+  border-bottom: 2px solid #fff;
+  padding: 5px;
+  margin-bottom: 18px;
 }
 
 div.aatc-right-bar {
@@ -26,4 +39,73 @@ div.aatc-right-bar {
   width: 65%;
   margin: 0 10px;
   padding: 20px;
+}
+
+button.aatc_button {
+  padding: 5px 27px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: #fff;
+  font-size: 15px;
+}
+
+button.aatc_button.edit {
+  background-color: #0073aa;
+}
+
+button.aatc_button.submit {
+  padding: 14px 36px;
+  background-color: #0073aa;
+}
+button.aatc_button.submit:hover {
+  padding: 14px 36px;
+  background-color: #0073aac9;
+}
+
+button.aatc_button.edit {
+  background-color: #0074aac0;
+}
+
+button.aatc_button.delete {
+  background-color: red;
+}
+
+button.aatc_button.delete {
+  background-color: red;
+}
+
+button.aatc_button.delete:hover {
+  background-color: rgba(255, 0, 0, 0.623);
+}
+
+#aatc_list tr {
+  text-align: center;
+}
+
+#aatc-form .form-group {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+#aatc-form .form-group label {
+  width: 30%;
+}
+#aatc-form .form-group select {
+  width: 70%;
+}
+#aatc-form fieldset {
+  border: 2px solid #c98100;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#aatc-form fieldset legend {
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0 10px;
+}
+#aatc-form .chosen-container {
+  padding: 7px;
 }
