@@ -25,6 +25,8 @@
  * Domain Path:       /languages
  */
 
+global $wpdb;
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -37,6 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'CHMG_AUTO_ADD_TO_CART_VERSION', '1.0.0' );
 define( 'AATC_TEXT_DOMAIN', 'chmg-auto-add-to-cart' );
+define( 'AATC_TABLE_NAME', $wpdb->prefix . "auto_add_to_cart" );
 
 /**
  * The code that runs during plugin activation.

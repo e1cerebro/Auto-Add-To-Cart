@@ -1,7 +1,62 @@
 <?php
 
+
+
+
+
     class CPLC_DB_Utils{
 
+
+        public static function Fetch_aatc_data(){
+            global $wpdb;
+            $data= $wpdb->get_results( "SELECT * FROM ".AATC_TABLE_NAME);
+            $wpdb->flush();
+            return $data;
+        }
+
+        public static function Fetch_aatc_specific_data($product_id){
+            
+            global $wpdb;
+            
+            $query_data = $wpdb->get_results( "SELECT `target_ids`, `date_start`, `date_end`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'products' AND `source_ids` = {$product_id} AND `status` = 'active' ");
+            $wpdb->flush();
+            return $query_data;
+        }
+
+        public static function get_product_from_cats($product_id){
+                global $wpdb;
+                $category_ids = self::get_product_cat_ids($product_id);
+                $processed_cat_ids =  implode(",", $category_ids);
+
+                $cat_data= $wpdb->get_results( "SELECT `target_ids`, `date_start`, `date_end`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'categories' AND `source_ids` IN ({$processed_cat_ids})  AND `status` = 'active'");
+
+                $wpdb->flush();
+
+                return $cat_data;   
+        }
+
+
+        public static function get_product_cat_ids($product_id){
+            $terms = get_the_terms( $product_id, 'product_cat' );
+            if( $terms){
+                $cat_ids = array();
+                foreach ( $terms as $term ) {
+                    array_push($cat_ids, $term->term_id);
+                } 
+                return $cat_ids;
+            }
+            return 0;
+        }
+
+        public static function product_name($product_id){
+            $product = wc_get_product( $product_id );
+            return $product->get_name();
+        }
+
+        public static function get_product_category_by_id( $category_id ) {
+            $term = get_term_by( 'id', $category_id, 'product_cat', 'ARRAY_A' );
+            return $term['name'];
+        }
 
         public static function get_products(){
             $args =  array(

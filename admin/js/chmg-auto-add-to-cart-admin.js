@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
 
   $('.categories').fadeOut();
 
-  $('#choice_type').on('change', function () {
+  $('#criteria').on('change', function () {
     if (this.value === 'products') {
       $('.categories').slideUp();
       $('.products').slideDown();

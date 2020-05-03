@@ -11,7 +11,7 @@ section.aatc-main {
 }
 
 div.aatc-left-bar {
-  background-color: #000;
+  background-color: #174a5f;
   max-height: 100vh;
   width: 30%;
   padding: 20px;
@@ -108,4 +108,35 @@ button.aatc_button.delete:hover {
 }
 #aatc-form .chosen-container {
   padding: 7px;
+}
+
+p input.aatc_button.deactivate {
+  background-color: red;
+  color: #fff;
+}
+
+p input.aatc_button.activate {
+  background-color: green;
+  color: #fff;
+}
+
+a.aatc-edit-rule {
+  color: #ffffff !important;
+  border-color: #0071a1;
+  background: #0071a1;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 2.15384615;
+  min-height: 30px;
+  margin: 0;
+  padding: 0 19px;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  vertical-align: top;
 }

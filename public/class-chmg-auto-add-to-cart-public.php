@@ -100,4 +100,53 @@ class Chmg_Auto_Add_To_Cart_Public {
 
 	}
 
+	public function aatc_process_add_to_cart($cart_item_data, $product_id){
+		require_once plugin_dir_path( __FILE__ ).'../utils/db-utils.php';
+ 
+		$prod_data = CPLC_DB_Utils::Fetch_aatc_specific_data($product_id);
+		
+
+		if(count($prod_data) < 1){
+			$prod_data = CPLC_DB_Utils::get_product_from_cats($product_id);
+		} 
+
+		$today 		= date("Y-m-d");
+		$start_date = $prod_data[0]->date_start;
+		$end_date   = $prod_data[0]->date_end;
+		$status		= $prod_data[0]->status;
+
+		if($end_date === '0000-00-00' ){
+			echo "valid end date {$end_date}";
+		} 
+		
+
+		if(sizeof($prod_data) > 0 && $status === 'active' && $start_date <= $today ){
+
+
+			if($end_date !== '0000-00-00' && $end_date < $today ) return;
+ 
+			$product_ids = explode(",", $prod_data[0]->target_ids);
+
+			//Check if the product is already in the cart...
+			$product_cart_id = WC()->cart->generate_cart_id( 36 );
+			$in_cart = WC()->cart->find_product_in_cart($product_cart_id);
+
+			if ( $in_cart ) {
+				$notice = "'".CPLC_DB_Utils::product_name($product_id)  . "' is in the Cart!";
+				wc_print_notice( $notice, 'notice' );
+			
+			}else{
+				foreach($product_ids as $id){
+					echo "adding {$id}";
+					WC()->cart->add_to_cart($id);
+				}
+				return;
+			}
+			 
+
+		}
+
+ 
+	}
+
 }
