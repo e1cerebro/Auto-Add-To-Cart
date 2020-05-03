@@ -13,6 +13,14 @@ jQuery(document).ready(function ($) {
 
   $('.categories').fadeOut();
 
+  if ($('#criteria').val() == 'products') {
+    $('.categories').slideUp();
+    $('.products').slideDown();
+  } else {
+    $('.categories').slideDown();
+    $('.products').slideUp();
+  }
+
   $('#criteria').on('change', function () {
     if (this.value === 'products') {
       $('.categories').slideUp();

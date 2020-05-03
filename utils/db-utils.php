@@ -14,6 +14,13 @@
             return $data;
         }
 
+        public static function Fetch_single_aatc_data($id){
+            global $wpdb;
+            $data= $wpdb->get_results( "SELECT * FROM ".AATC_TABLE_NAME." WHERE `id` = {$id} ");
+            $wpdb->flush();
+            return $data;
+        }
+
         public static function Fetch_aatc_specific_data($product_id){
             
             global $wpdb;
