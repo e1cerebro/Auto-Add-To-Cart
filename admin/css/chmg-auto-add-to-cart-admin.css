@@ -38,7 +38,7 @@ div.aatc-right-bar {
   background-color: rgb(180, 180, 180);
   width: 65%;
   margin: 0 10px;
-  padding: 20px;
+  padding: 66px 10px;
 }
 
 button.aatc_button {
@@ -58,6 +58,7 @@ button.aatc_button.submit {
   padding: 14px 36px;
   background-color: #0073aa;
 }
+
 button.aatc_button.submit:hover {
   padding: 14px 36px;
   background-color: #0073aac9;
@@ -92,9 +93,11 @@ button.aatc_button.delete:hover {
 #aatc-form .form-group label {
   width: 30%;
 }
+
 #aatc-form .form-group select {
   width: 70%;
 }
+
 #aatc-form fieldset {
   border: 2px solid #c98100;
   padding: 10px;
@@ -106,6 +109,7 @@ button.aatc_button.delete:hover {
   font-weight: 600;
   padding: 0 10px;
 }
+
 #aatc-form .chosen-container {
   padding: 7px;
 }

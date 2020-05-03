@@ -66,7 +66,12 @@
             </thead>
             <tbody>
 
-            <?php $count; foreach(CPLC_DB_Utils::Fetch_aatc_data() as $record): ?>
+            <?php 
+                $count; 
+                foreach(CPLC_DB_Utils::Fetch_aatc_data() as $record): 
+                $startDate = DateTime::createFromFormat('Y-m-d', $record->date_start);
+                $endDate = DateTime::createFromFormat('Y-m-d', $record->date_end);
+            ?>
                 <tr>
                     <td><?php echo ++$count; ?></td>
                     <?php if($record->type === 'products'): ?>
@@ -89,8 +94,8 @@
                        <td><?php echo CPLC_DB_Utils::product_name($record->target_ids);  ?></td>
                     <?php endif; ?>
 
-                    <td><?php echo $record->date_start; ?></td>
-                    <td><?php echo $record->date_end; ?></td>
+                    <td><?php  echo date_format($startDate,"jS F, Y") ; ?></td>
+                    <td><?php echo date_format($endDate,"jS F, Y") ; ?></td>
                     <td>
                          <?php if('active' === $record->status): ?>
                             <form method="post" name="auto_add_form" action="">

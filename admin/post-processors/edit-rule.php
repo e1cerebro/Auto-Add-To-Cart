@@ -12,7 +12,7 @@
     $rule_id           = filter_var($_POST['rule_id'], FILTER_SANITIZE_NUMBER_INT);
  
 
-    //Build the insert query arguments
+    //Build the update query arguments
     $args = array(
         'target_ids'    =>  $auto_add_product,
         'type'          =>  $criteria,

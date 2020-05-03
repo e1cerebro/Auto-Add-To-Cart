@@ -61,24 +61,12 @@ class Chmg_Auto_Add_To_Cart_Admin {
 	 */
 	public function enqueue_styles($hook_suffix) {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Chmg_Auto_Add_To_Cart_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Chmg_Auto_Add_To_Cart_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/chmg-auto-add-to-cart-admin.css', array(), $this->version, 'all' );
- 
 		if(strpos($hook_suffix, 'product_page_auto-add-to-cart-page') !== false) {
 		 
-			wp_enqueue_style( $this->plugin_name."-chosen-css", "https://harvesthq.github.io/chosen/chosen.css", array(), '', 'all' );
-			wp_enqueue_style( $this->plugin_name."-data-table-css", "https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css", array(), '', 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/chmg-auto-add-to-cart-admin.css', array(), $this->version, 'all' );
+
+			wp_enqueue_style( $this->plugin_name."-chosen-css", plugin_dir_url( __FILE__ ) . 'css/chosen.css', array(), '', 'all' );
+			wp_enqueue_style( $this->plugin_name."-data-table-css", plugin_dir_url( __FILE__ ) . "css/jquery.dataTables.css", array(), '', 'all' );
 
 		}
 
@@ -90,25 +78,12 @@ class Chmg_Auto_Add_To_Cart_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts($hook_suffix) {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Chmg_Auto_Add_To_Cart_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Chmg_Auto_Add_To_Cart_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/chmg-auto-add-to-cart-admin.js', array( 'jquery' ), $this->version, false );
-		
 		
 		if(strpos($hook_suffix, 'product_page_auto-add-to-cart-page') !== false) {
- 			wp_enqueue_script( $this->plugin_name."-chosen-js","//harvesthq.github.io/chosen/chosen.jquery.js", '', true );
- 			wp_enqueue_script( $this->plugin_name."-data-table-js","https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js", '', time(), true );
+			
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/chmg-auto-add-to-cart-admin.js', array( 'jquery' ), $this->version, false );
+ 			wp_enqueue_script( $this->plugin_name."-chosen-js",plugin_dir_url( __FILE__ ) ."js/chosen.jquery.js", '', true );
+ 			wp_enqueue_script( $this->plugin_name."-data-table-js",plugin_dir_url( __FILE__ ) ."js/jquery.dataTables.js", '', time(), true );
 		} 
 
 	}

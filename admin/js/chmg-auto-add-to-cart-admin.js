@@ -1,5 +1,6 @@
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function () {
   jQuery('.chosen-select').chosen();
+
   jQuery('#aatc_list').DataTable({
     pageLength: 25,
     lengthMenu: [
@@ -11,25 +12,23 @@ jQuery(document).ready(function ($) {
     },
   });
 
-  $('.categories').fadeOut();
+  jQuery('.categories').fadeOut();
 
-  if ($('#criteria').val() == 'products') {
-    $('.categories').slideUp();
-    $('.products').slideDown();
+  if (jQuery('#criteria').val() == 'products') {
+    jQuery('.categories').slideUp();
+    jQuery('.products').slideDown();
   } else {
-    $('.categories').slideDown();
-    $('.products').slideUp();
+    jQuery('.categories').slideDown();
+    jQuery('.products').slideUp();
   }
 
-  $('#criteria').on('change', function () {
+  jQuery('#criteria').on('change', function () {
     if (this.value === 'products') {
-      $('.categories').slideUp();
-      $('.products').slideDown();
+      jQuery('.categories').slideUp();
+      jQuery('.products').slideDown();
     } else {
-      $('.categories').slideDown();
-      $('.products').slideUp();
+      jQuery('.categories').slideDown();
+      jQuery('.products').slideUp();
     }
   });
-
-  jQuery('').on('click', function () {});
 });
