@@ -35,7 +35,7 @@
 
     <div class="aatc-left-bar">
         <div class="section-title">
-            <h2 > Auto ADD TO CArt Rule </h2>
+            <h2 > BOGOF Rule </h2>
             <h4>Create a rule to automatically add a product to cart when the rule matches</h4>
             <?php if($query_params): ?>
                 <a class="create-new-rule" href="/wp-admin/edit.php?post_type=product&page=auto-add-to-cart-page">Create New Rule</a>

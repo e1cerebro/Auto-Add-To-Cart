@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Auto Add To Cart
  * Plugin URI:        #
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Add additional product to cart when the targeted product is added to cart.
  * Version:           1.0.0
  * Author:            Uchenna Christian
  * Author URI:        #

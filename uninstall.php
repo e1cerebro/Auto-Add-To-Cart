@@ -30,5 +30,14 @@
 if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) exit();
 
 global $wpdb;
-$wpdb->query( "DROP TABLE IF EXISTS ".AATC_TABLE_NAME );
+
+/* 
+ * @var $table_name 
+ * name of table to be dropped
+ * prefixed with $wpdb->prefix from the database
+ */
+$table_name = $wpdb->prefix . 'auto_add_to_cart';
+
+// drop the table from the database.
+$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
  
