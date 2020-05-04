@@ -9,6 +9,8 @@
     $auto_add_product  = compress_array($_POST['auto_add_product']);
     $start_date        = filter_var($_POST['start_date'], FILTER_SANITIZE_STRING);
     $end_date          = filter_var($_POST['end_date'], FILTER_SANITIZE_STRING);
+    $quantity          = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
+    $coupon_code       = filter_var($_POST['coupon_code'], FILTER_SANITIZE_STRING);
 
 
     //Build the insert query arguments
@@ -16,11 +18,15 @@
         'target_ids'    =>  $auto_add_product,
         'type'          =>  $criteria,
         'source_ids'    =>  $source_ids,
-        'date_start'    =>  $start_date,
-        'date_end'      =>  $end_date,
+        'start_date'    =>  $start_date,
+        'end_date'      =>  $end_date,
         'status'        =>  'active',
+        'coupon_code'   =>  $coupon_code,
+		'quantity'      =>  $quantity,
          
     );
+
+     
 
     //Insert the new data
     $query = $wpdb->insert(AATC_TABLE_NAME, $args);

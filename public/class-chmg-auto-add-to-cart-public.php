@@ -100,53 +100,52 @@ class Chmg_Auto_Add_To_Cart_Public {
 
 	}
 
-	public function aatc_process_add_to_cart($cart_item_data, $product_id){
+	public function aatc_process_add_to_cart($cart_item_data, $product_id, $variation_id){
 		require_once plugin_dir_path( __FILE__ ).'../utils/db-utils.php';
+
+		$product_id = $variation_id ? $variation_id : $product_id;
  
 		$prod_data = CPLC_DB_Utils::Fetch_aatc_specific_data($product_id);
 		
-
 		if(count($prod_data) < 1){
-			$prod_data = CPLC_DB_Utils::get_product_from_cats($product_id);
+ 			$prod_data = CPLC_DB_Utils::get_product_from_cats($product_id);
 		} 
 
-		$today 		= date("Y-m-d");
-		$start_date = $prod_data[0]->date_start;
-		$end_date   = $prod_data[0]->date_end;
-		$status		= $prod_data[0]->status;
-
-		if($end_date === '0000-00-00' ){
-			echo "valid end date {$end_date}";
-		} 
-		
-
+		$today 			= date("Y-m-d");
+		$start_date 	= $prod_data[0]->start_date;
+		$end_date  		= $prod_data[0]->end_date;
+		$status			= $prod_data[0]->status;
+		$coupon_code 	= $prod_data[0]->coupon_code;
+		$quantity 		= $prod_data[0]->quantity;
+ 
 		if(sizeof($prod_data) > 0 && $status === 'active' && $start_date <= $today ){
-
 
 			if($end_date !== '0000-00-00' && $end_date < $today ) return;
  
 			$product_ids = explode(",", $prod_data[0]->target_ids);
 
-			//Check if the product is already in the cart...
-			$product_cart_id = WC()->cart->generate_cart_id( 36 );
-			$in_cart = WC()->cart->find_product_in_cart($product_cart_id);
+			foreach($product_ids as $id){
 
-			if ( $in_cart ) {
-				$notice = "'".CPLC_DB_Utils::product_name($product_id)  . "' is in the Cart!";
-				wc_print_notice( $notice, 'notice' );
-			
-			}else{
-				foreach($product_ids as $id){
-					echo "adding {$id}";
-					WC()->cart->add_to_cart($id);
-				}
-				return;
+				$product_exists_in_cart = $this->aatc_product_in_cart($id);
+
+				if($product_exists_in_cart) continue;
+
+					WC()->cart->add_to_cart($id, $quantity);
+
+					if($coupon_code){
+						WC()->cart->add_discount( sanitize_text_field( $coupon_code ));
+					}
 			}
-			 
-
+			return;
 		}
-
  
+	}
+
+
+	public function aatc_product_in_cart($id){
+		$product_cart_id = WC()->cart->generate_cart_id($id);
+		$in_cart = WC()->cart->find_product_in_cart($product_cart_id);
+		return $in_cart;
 	}
 
 }

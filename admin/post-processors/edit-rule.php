@@ -10,15 +10,18 @@
     $start_date        = filter_var($_POST['start_date'], FILTER_SANITIZE_STRING);
     $end_date          = filter_var($_POST['end_date'], FILTER_SANITIZE_STRING);
     $rule_id           = filter_var($_POST['rule_id'], FILTER_SANITIZE_NUMBER_INT);
- 
+    $quantity          = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
+    $coupon_code       = filter_var($_POST['coupon_code'], FILTER_SANITIZE_STRING);
 
     //Build the update query arguments
     $args = array(
         'target_ids'    =>  $auto_add_product,
         'type'          =>  $criteria,
         'source_ids'    =>  $source_ids,
-        'date_start'    =>  $start_date,
-        'date_end'      =>  $end_date,
+        'start_date'    =>  $start_date,
+        'end_date'      =>  $end_date,
+        'coupon_code'   =>  $coupon_code,
+		'quantity'      =>  $quantity,
          
     );
 

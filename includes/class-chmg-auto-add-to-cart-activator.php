@@ -39,12 +39,14 @@ class Chmg_Auto_Add_To_Cart_Activator {
 
 		$sql = "CREATE TABLE IF NOT EXISTS $table ( 
 				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`source_ids` varchar(225) DEFAULT NULL,
 				`target_ids` varchar(225) DEFAULT NULL,
 				`type` varchar(225) DEFAULT NULL,
-				`source_ids` varchar(225) DEFAULT NULL,
-				`date_start` DATE DEFAULT NULL,
-				`date_end` DATE DEFAULT NULL,
+				`start_date` DATE DEFAULT NULL,
+				`end_date` DATE DEFAULT NULL,
 				`status` varchar(225) DEFAULT NULL,
+				`coupon_code` varchar(225) DEFAULT NULL,
+				`quantity` varchar(225) DEFAULT 1,
 				PRIMARY KEY (`id`)
 		) $charset_collate;";
 

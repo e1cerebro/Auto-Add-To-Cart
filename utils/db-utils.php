@@ -25,7 +25,7 @@
             
             global $wpdb;
             
-            $query_data = $wpdb->get_results( "SELECT `target_ids`, `date_start`, `date_end`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'products' AND `source_ids` = {$product_id} AND `status` = 'active' ");
+            $query_data = $wpdb->get_results( "SELECT `target_ids`, `start_date`, `end_date`, `coupon_code`, `quantity`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'products' AND `source_ids` = {$product_id} AND `status` = 'active' ");
             $wpdb->flush();
             return $query_data;
         }
@@ -35,7 +35,7 @@
                 $category_ids = self::get_product_cat_ids($product_id);
                 $processed_cat_ids =  implode(",", $category_ids);
 
-                $cat_data= $wpdb->get_results( "SELECT `target_ids`, `date_start`, `date_end`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'categories' AND `source_ids` IN ({$processed_cat_ids})  AND `status` = 'active'");
+                $cat_data= $wpdb->get_results( "SELECT `target_ids`, `start_date`, `end_date`, `coupon_code`, `quantity`, `status` FROM ".AATC_TABLE_NAME." WHERE `type` = 'categories' AND `source_ids` IN ({$processed_cat_ids})  AND `status` = 'active'");
 
                 $wpdb->flush();
 

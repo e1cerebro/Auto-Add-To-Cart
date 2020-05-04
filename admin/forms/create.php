@@ -8,7 +8,7 @@
             </div>
 
             <fieldset>
-                <legend>IF SELECTED:</legend>
+                <legend>IF This is Added To Cart:</legend>
 
                 <div class="form-group categories">
                     <label for="categories">Categories</label>
@@ -80,7 +80,7 @@
                 <legend>Also Add this to cart:</legend>
                 <div class="form-group">
                 <label for="auto_add_product">Products</label>
-                <select   data-placeholder="Choose categories..." class="chosen-select" name="auto_add_product[]" id="auto_add_product" multiple>
+                <select   data-placeholder="Choose product(s)..." class="chosen-select" name="auto_add_product[]" id="auto_add_product" multiple>
 
                     <option value="">select product</option>
                     <?php foreach(CPLC_DB_Utils::get_products() as $product_id): ?>
@@ -141,6 +141,19 @@
             <div class="form-group">
                 <label for="end_date">End Date</label>
                 <input type="date" name="end_date" id="end_date">
+            </div> 
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional Settings</legend>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" value="1" min="1" name="quantity" id="quantity">
+            </div> 
+            
+            <div class="form-group">
+                <label for="coupon_code">Coupon Code</label>
+                <input type="text"  name="coupon_code" id="coupon_code">
             </div> 
         </fieldset>
     

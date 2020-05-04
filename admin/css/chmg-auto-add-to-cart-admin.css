@@ -8,13 +8,13 @@ section.aatc-main {
   display: flex;
   flex-direction: row;
   margin-top: 20px;
+  font-size: 15px;
 }
 
 div.aatc-left-bar {
   background-color: #174a5f;
-  max-height: 100vh;
   width: 30%;
-  padding: 20px;
+  padding: 57px 18px;
   color: #fff;
   border: 5px solid #c98100;
 }
@@ -39,6 +39,7 @@ div.aatc-right-bar {
   width: 65%;
   margin: 0 10px;
   padding: 66px 10px;
+  font-weight: 600;
 }
 
 button.aatc_button {
@@ -92,10 +93,20 @@ button.aatc_button.delete:hover {
 
 #aatc-form .form-group label {
   width: 30%;
+  line-height: 40px;
 }
 
 #aatc-form .form-group select {
   width: 70%;
+}
+
+#aatc-form .form-group input {
+  line-height: 40px;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 #aatc-form fieldset {
@@ -143,4 +154,27 @@ a.aatc-edit-rule {
   white-space: nowrap;
   box-sizing: border-box;
   vertical-align: top;
+}
+
+.chosen-container-single .chosen-single {
+  line-height: 40px;
+  font-size: 15px;
+  height: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+.chosen-container-multi .chosen-choices {
+
+  font-size: 16px;
+}
+
+a.create-new-rule {
+  color: #c98100;
+  font-size: 23px;
+  display: block;
+  margin-bottom: 16px;
+  /* text-decoration: none; */
+  font-weight: 700;
 }

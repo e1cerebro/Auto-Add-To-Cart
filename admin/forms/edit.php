@@ -4,12 +4,14 @@
 
     $data = CPLC_DB_Utils::Fetch_single_aatc_data($query_params)[0];
 
-    $type = $data->type;
-    $target_ids = $data->target_ids;
-    $source_ids = $data->source_ids;
-    $date_start = $data->date_start;
-    $date_end = $data->date_end;
-    $target_ids_array = explode(",", $target_ids);
+    $type               = $data->type;
+    $target_ids         = $data->target_ids;
+    $source_ids         = $data->source_ids;
+    $date_start         = $data->start_date;
+    $date_end           = $data->end_date;
+    $coupon_code        = $data->coupon_code;
+    $quantity           = $data->quantity;
+    $target_ids_array   = explode(",", $target_ids);
  ?>
 
 <?php if($data): ?>
@@ -24,7 +26,7 @@
             </div>
 
             <fieldset>
-                <legend>IF SELECTED:</legend>
+                <legend>IF This is Added To Cart:</legend>
 
                 <div class="form-group categories">
                     <label for="categories">Categories</label>
@@ -177,6 +179,20 @@
                 <input type="date" name="end_date" value="<?php echo $date_end; ?>" id="end_date">
             </div> 
         </fieldset>
+
+        <fieldset>
+            <legend>Additional Settings</legend>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" value="<?php echo $quantity; ?>" min="1" name="quantity" id="quantity">
+            </div> 
+            
+            <div class="form-group">
+                <label for="coupon_code">Coupon Code</label>
+                <input type="text" value="<?php echo $coupon_code ; ?>"  name="coupon_code" id="coupon_code">
+            </div> 
+        </fieldset>
+
     
         <div class="form-group">
             <?php submit_button('Save Changes', ' primary aatc_button','edit_rule', TRUE); ?>

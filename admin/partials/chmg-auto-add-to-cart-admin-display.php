@@ -37,6 +37,9 @@
         <div class="section-title">
             <h2 > Auto ADD TO CArt Rule </h2>
             <h4>Create a rule to automatically add a product to cart when the rule matches</h4>
+            <?php if($query_params): ?>
+                <a class="create-new-rule" href="/wp-admin/edit.php?post_type=product&page=auto-add-to-cart-page">Create New Rule</a>
+            <?php endif; ?>
         </div>
 
       <?php if(!$query_params): ?>
@@ -54,11 +57,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Source</th>
+                    <th>IF THIS</th>
+                    <th>THEN ADD</th>
                     <th>Criteria</th>
-                    <th>Target</th>
                     <th>Date Start</th>
                     <th>Date End</th>
+                    <th>Qty</th>
+                    <th>Coupon Code</th>
                     <th>Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -69,9 +74,11 @@
             <?php 
                 $count; 
                 foreach(CPLC_DB_Utils::Fetch_aatc_data() as $record): 
-                $startDate = DateTime::createFromFormat('Y-m-d', $record->date_start);
-                $endDate = DateTime::createFromFormat('Y-m-d', $record->date_end);
+                $startDate = $record->start_date != '0000-00-00' ? date_format(DateTime::createFromFormat('Y-m-d', $record->start_date),"jS F, Y") : $record->start_date ;
+                $endDate = $record->end_date != '0000-00-00' ? date_format(DateTime::createFromFormat('Y-m-d', $record->end_date),"jS F, Y") : $record->end_date ;
             ?>
+
+
                 <tr>
                     <td><?php echo ++$count; ?></td>
                     <?php if($record->type === 'products'): ?>
@@ -79,7 +86,7 @@
                     <?php else: ?>
                         <td><?php echo CPLC_DB_Utils::get_product_category_by_id($record->source_ids);  ?></td>
                     <?php endif; ?>
-                    <td><?php echo $record->type; ?></td>
+                   
                     
                     <?php if(strpos($record->target_ids, ",") !== false): ?>
                     <?php
@@ -94,8 +101,11 @@
                        <td><?php echo CPLC_DB_Utils::product_name($record->target_ids);  ?></td>
                     <?php endif; ?>
 
-                    <td><?php  echo date_format($startDate,"jS F, Y") ; ?></td>
-                    <td><?php echo date_format($endDate,"jS F, Y") ; ?></td>
+                    <td><?php echo $record->type; ?></td>
+                    <td><?php  echo  $startDate ; ?></td>
+                    <td><?php echo $endDate; ?></td>
+                    <td><?php echo $record->quantity; ?></td>
+                    <td><?php echo $record->coupon_code; ?></td>
                     <td>
                          <?php if('active' === $record->status): ?>
                             <form method="post" name="auto_add_form" action="">
@@ -111,6 +121,7 @@
                             </form> 
                          <?php endif; ?>
                     </td>
+                  
                     <td>
                         <p class="submit">
                             <a href="/wp-admin/edit.php?post_type=product&page=auto-add-to-cart-page&product-id=<?php echo $record->id; ?>" class="aatc-edit-rule">Edit</a>

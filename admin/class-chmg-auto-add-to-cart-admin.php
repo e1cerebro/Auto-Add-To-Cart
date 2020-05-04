@@ -62,11 +62,10 @@ class Chmg_Auto_Add_To_Cart_Admin {
 	public function enqueue_styles($hook_suffix) {
 
 		if(strpos($hook_suffix, 'product_page_auto-add-to-cart-page') !== false) {
+			wp_enqueue_style( $this->plugin_name."-chosen-css", "https://harvesthq.github.io/chosen/chosen.css", array(), '', 'all' );
+			wp_enqueue_style( $this->plugin_name."-data-table-css", plugin_dir_url( __FILE__ ) . "css/jquery.dataTables.css", array(), '', 'all' );
 		 
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/chmg-auto-add-to-cart-admin.css', array(), $this->version, 'all' );
-
-			wp_enqueue_style( $this->plugin_name."-chosen-css", plugin_dir_url( __FILE__ ) . 'css/chosen.css', array(), '', 'all' );
-			wp_enqueue_style( $this->plugin_name."-data-table-css", plugin_dir_url( __FILE__ ) . "css/jquery.dataTables.css", array(), '', 'all' );
 
 		}
 

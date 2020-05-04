@@ -172,7 +172,7 @@ class Chmg_Auto_Add_To_Cart {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'aatc_process_add_to_cart', 10, 2 );
+		$this->loader->add_action( 'woocommerce_add_cart_item_data', $plugin_public, 'aatc_process_add_to_cart', 10, 3 );
 	}
 
 	/**
